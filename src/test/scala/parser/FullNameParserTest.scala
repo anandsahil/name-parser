@@ -4,7 +4,7 @@ import org.scalatest._
 import org.scalatest.prop._
 
 class FullNameParserTest extends PropSpec with PropertyChecks with Matchers with EitherValues {
-  property("parse names test") {
+  property("parse english names test") {
     val names = Table(
       ("nameToParse", "expectedName"),
       // First & Last Names
@@ -41,13 +41,12 @@ class FullNameParserTest extends PropSpec with PropertyChecks with Matchers with
       ("Dr. John P. Doe-Ray, Jr.", ParsedName(Some("Dr."), Some("John"), Some("P."), Some("Doe-Ray"), None, Some("Jr."))),
       ("Dr. Doe-Ray, John P., Jr.", ParsedName(Some("Dr."), Some("John"), Some("P."), Some("Doe-Ray"), None, Some("Jr."))),
       ("Doe-Ray, Dr. John P., Jr.", ParsedName(Some("Dr."), Some("John"), Some("P."), Some("Doe-Ray"), None, Some("Jr."))),
-      ("Dipl.Bw. (GG) Sahil Anand", ParsedName(Some("Dipl.Bw."), Some("Sahil"), None, Some("Anand"), Some("GG"), None)),
 
       // Names with nick names
       ("Orenthal James \"O. J.\" Simpson", ParsedName(None, Some("Orenthal"), Some("James"), Some("Simpson"), Some("O. J."), None)),
       ("Orenthal 'O. J.' James Simpson", ParsedName(None, Some("Orenthal"), Some("James"), Some("Simpson"), Some("O. J."), None)),
-      //("(O. J.) Orenthal James Simpson", ParsedName(None, Some("Orenthal"), Some("James"), Some("Simpson"), Some("O. J."), None)),
-      //("Simpson, Orenthal James “O. J.”", ParsedName(None, Some("Orenthal"), Some("James"), Some("Simpson"), Some("O. J."), None)),
+      ("(O. J.) Orenthal James Simpson", ParsedName(None, Some("Orenthal"), Some("James"), Some("Simpson"), Some("O. J."), None)),
+      ("Simpson, Orenthal James “O. J.”", ParsedName(None, Some("Orenthal"), Some("James"), Some("Simpson"), Some("O. J."), None)),
       ("Simpson, Orenthal ‘O. J.’ James", ParsedName(None, Some("Orenthal"), Some("James"), Some("Simpson"), Some("O. J."), None)),
       ("Simpson, [O. J.] Orenthal James", ParsedName(None, Some("Orenthal"), Some("James"), Some("Simpson"), Some("O. J."), None)),
 
@@ -56,13 +55,14 @@ class FullNameParserTest extends PropSpec with PropertyChecks with Matchers with
       ("de Lorenzo y Gutierez, Mr. Jüan Martinez (Martin) Jr.", ParsedName(Some("Mr."), Some("Jüan"), Some("Martinez"), Some("de Lorenzo y Gutierez"), Some("Martin"), Some("Jr."))),
       ("de Lorenzo y Gutierez, Mr. Jüan (Martin) Martinez Jr.", ParsedName(Some("Mr."), Some("Jüan"), Some("Martinez"), Some("de Lorenzo y Gutierez"), Some("Martin"), Some("Jr."))),
       ("Mr. de Lorenzo y Gutierez, Jüan Martinez (Martin) Jr.", ParsedName(Some("Mr."), Some("Jüan"), Some("Martinez"), Some("de Lorenzo y Gutierez"), Some("Martin"), Some("Jr."))),
-      //("Mr. de Lorenzo y Gutierez, Jüan (Martin) Martinez Jr.", ParsedName(Some("Mr."), Some("Jüan"), Some("Martinez"), Some("de Lorenzo y Gutierez"), Some("Martin"), Some("Jr."))),
-      //("Mr. de Lorenzo y Gutierez Jr., Jüan Martinez (Martin)", ParsedName(Some("Mr."), Some("Jüan"), Some("Martinez"), Some("de Lorenzo y Gutierez"), Some("Martin"), Some("Jr."))),
+      ("Mr. de Lorenzo y Gutierez, Jüan (Martin) Martinez Jr.", ParsedName(Some("Mr."), Some("Jüan"), Some("Martinez"), Some("de Lorenzo y Gutierez"), Some("Martin"), Some("Jr."))),
+      ("Mr. de Lorenzo y Gutierez Jr., Jüan Martinez (Martin)", ParsedName(Some("Mr."), Some("Jüan"), Some("Martinez"), Some("de Lorenzo y Gutierez"), Some("Martin"), Some("Jr."))),
       ("Mr. de Lorenzo y Gutierez Jr., Jüan (Martin) Martinez", ParsedName(Some("Mr."), Some("Jüan"), Some("Martinez"), Some("de Lorenzo y Gutierez"), Some("Martin"), Some("Jr."))),
-      //("Mr. de Lorenzo y Gutierez, Jr. Jüan Martinez (Martin)", ParsedName(Some("Mr."), Some("Jüan"), Some("Martinez"), Some("de Lorenzo y Gutierez"), Some("Martin"), Some("Jr."))),
+      ("Mr. de Lorenzo y Gutierez, Jr. Jüan Martinez (Martin)", ParsedName(Some("Mr."), Some("Jüan"), Some("Martinez"), Some("de Lorenzo y Gutierez"), Some("Martin"), Some("Jr."))),
       ("Mr. de Lorenzo y Gutierez, Jr. Jüan (Martin) Martinez", ParsedName(Some("Mr."), Some("Jüan"), Some("Martinez"), Some("de Lorenzo y Gutierez"), Some("Martin"), Some("Jr."))),
       ("Dale Edward Senior II, PhD", ParsedName(None, Some("Dale"), Some("Edward"), Some("Senior"), None, Some("II PhD"))),
       ("Jonathan Smith IV, PhD", ParsedName(None, Some("Jonathan"), None, Some("Smith"), None, Some("IV PhD"))),
+      ("Prof Dr Mary-Louise D. Miller Jr", ParsedName(Some("Prof Dr"), Some("Mary-Louise"), Some("D."), Some("Miller"), None, Some("Jr")))
 
     )
 
