@@ -31,12 +31,12 @@ object Parse {
       (fn, mn, ln) = extractFirstNameLastNameMiddleName(np6, nc6)
       finalSuffixes = suffixes ::: extraSuffixes
       parsedName <- ParsedName(
-        titles.mapOption(_.mkString(" ")),
+        titles.toOptionA(_.mkString(" ")),
         fn,
         mn,
         ln,
         nickName.map(removeNickNameSymbols),
-        finalSuffixes.mapOption(_.mkString(" "))
+        finalSuffixes.toOptionA(_.mkString(" "))
       ).right[ParsingFailure]
     } yield parsedName).toEither
   }
