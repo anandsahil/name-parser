@@ -1,3 +1,6 @@
+
+[![Build Status](https://travis-ci.com/anandsahil/name-parser.svg?token=pZ1VuAvYBcjuYS7wzWWs&branch=master)](https://travis-ci.com/anandsahil/name-parser)
+
 # Description
 
 Name parser is a small library initiated to parse full names in multiple formats. The parser accepts a free form string containing full name 
