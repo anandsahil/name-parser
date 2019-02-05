@@ -1,5 +1,6 @@
 package parser
 
+import domain.Austria
 import org.scalatest._
 import org.scalatest.prop._
 
@@ -77,5 +78,10 @@ class FullNameParserTest extends PropSpec with PropertyChecks with Matchers with
       _ => fail()
     )
   }
+
+}
+
+object t extends App {
+  println(Parse("Dipl.-Ing. (FH) Sahil Anand", Austria))
 
 }
