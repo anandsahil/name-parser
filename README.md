@@ -26,14 +26,17 @@ The parser tries to divide names into following categories.
  
  ```scala
 import domain.English
-import parser.Parse
+import parser.NameParser
 
 val fullName: String = "Dr. John P. Doe-Ray, Jr."
-val parsedName: ParsingResult = Parse(fullName, English)
+val parsedName: ParsingResult = NameParser.parse(fullName, English)
+// As second parameter to funtion is default to English we can skip to pass it explicitly
+
+val parsedName: ParsingResult = NameParser.parse(fullName)
 // Right(ParsedName(Some(Dr.),Some(John),Some(P.),Some(Doe-Ray),None,Some(Jr.)))
 
 val fullNameEmpty: String = ""
-val parsedEmptyName: ParsingResult = Parse(fullName, English)
+val parsedEmptyName: ParsingResult = NameParser.parse(fullName, English)
 // Left(parser.ParsingFailure: name to be parsed cannot be empty)
 ```
 
