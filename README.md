@@ -14,7 +14,6 @@ The parser tries to divide names into following categories.
  4. last (string): last name or initial
  5. nick (string): nickname(s)
  5. suffix (string): suffix(es) (e.g. "Jr.", "II", or "Esq.")
- 6. error (array of strings): any parsing error messages
  
  During the parser implementation i stumbled upon different cultures having specific name pattern's so currently the parser has two culture
  
