@@ -82,6 +82,6 @@ class FullNameParserTest extends PropSpec with PropertyChecks with Matchers with
 }
 
 object t extends App {
-  println(Parse("Dipl.-Ing. (FH) Sahil Anand", Austria))
+  println(Parse("Mr. Jüan (Martin)  (BlaBLa) Martinez", Austria))
 
 }
